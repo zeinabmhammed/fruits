@@ -93,7 +93,9 @@ class SignInScreen extends StatelessWidget {
               SizedBox(height: 20),
               CustomButton(
                 text: " Login ",
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushNamed(context, "/mainLayout");
+                },
                 color: AppColors.green,
                 textColor: AppColors.white,
               ),

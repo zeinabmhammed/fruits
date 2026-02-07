@@ -1,12 +1,50 @@
-class AppAssets{
+class AppAssets {
   // splash screen
   static const String splashScreen = "assets/images/splash.png";
 
   // onBoardingScreen
   static const String onBoardingScreen = "assets/images/onBoardingScreen.png";
 
- // Svg
- static const String phoneIcon = "assets/svg/phone.svg";
- static const String googleIcon = "assets/svg/google.svg";
- static const String facebookIcon = "assets/svg/facebook.svg";
+  //homeScreen
+  static const String adsOne = "assets/images/ads1.png";
+  static const String adsTwo = "assets/images/ads2.jpg";
+  static const String adsThree = "assets/images/ads3.jpg";
+  static const String adsFour = "assets/images/ads4.jpg";
+
+  //categories
+  static const String restaurant = "assets/images/cat1.png";
+  static const String farm = "assets/images/cat2.png";
+  static const String coffee = "assets/images/cat3.png";
+  static const String pharmacy = "assets/images/cat4.png";
+  static const String sellerLogo = "assets/images/sellers.png";
+
+  // Svg
+  // auth
+  static const String phoneIcon = "assets/svg/phone.svg";
+  static const String googleIcon = "assets/svg/google.svg";
+  static const String facebookIcon = "assets/svg/facebook.svg";
+
+  // mainLayout
+  static const String homeIcon = "assets/svg/homeIcon.svg";
+  static const String ordersIcon = "assets/svg/ordersIcon.svg";
+  static const String favoriteIcon = "assets/svg/favoriteIcon.svg";
+  static const String basketIcon = "assets/svg/basketIcon.svg";
+  static const String moreIcon = "assets/svg/moreIcon.svg";
+
+  // appbar
+  static const String searchIcon = "assets/svg/searchIcon.svg";
+  static const String filterIcon = "assets/svg/filter.svg";
+
+  // sellers
+  static const String deliveryIcon = "assets/svg/deliviry.svg";
+  static const String locationIcon = "assets/svg/location.svg";
+
+  //moreScreen
+  static const String profileIcon = "assets/svg/profile.svg";
+  static const String languageIcon = "assets/svg/language.svg";
+  static const String supportIcon = "assets/svg/support.svg";
+  static const String termsIcon = "assets/svg/terms.svg";
+  static const String aboutIcon = "assets/svg/abbout.svg";
+  static const String addPhotoIcon = "assets/svg/Addphoto.svg";
+
 }

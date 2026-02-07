@@ -50,6 +50,7 @@ class _CustomPhoneFieldState extends State<CustomPhoneField> {
                   child: DropdownButton<String>(
                     value: selectedCountry,
                     icon: const Icon(Icons.keyboard_arrow_down),
+                    underline: const SizedBox.shrink(),
                     iconSize: 25,
                     elevation: 16,
                     items: countries.map((country) {

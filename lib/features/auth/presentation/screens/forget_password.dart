@@ -54,7 +54,7 @@ class ForgetPassword extends StatelessWidget {
               CustomButton(
                 text: "Submit",
                 onTap: () {
-                  // Navigator.pushNamed(context, "/otp");
+                  Navigator.pushNamed(context, "/otp");
                 },
                 color: AppColors.green,
                 textColor: AppColors.white,
