@@ -87,7 +87,6 @@ class UpdateProfileScreen extends StatelessWidget {
               ),
               const SizedBox(height: 20),
 
-              // ✨ Full Name
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [

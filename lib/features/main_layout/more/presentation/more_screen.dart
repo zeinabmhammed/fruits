@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fruits/core/resources/app_colors/app_colors.dart';
 import 'package:fruits/core/resources/app_assets/app_assets.dart';
+import 'package:fruits/features/main_layout/more/widget/language_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class MoreScreen extends StatelessWidget {
@@ -129,9 +130,10 @@ class MoreOptionItem extends StatelessWidget {
       trailing: Icon(Icons.arrow_forward_ios, size: 16, color: Colors.grey),
       onTap: () {
         if (title == "Language") {
-          Navigator.pushNamed(context, "/language");
+          LanguagePopup.show(context);
         } else if (title == "Support") {
           Navigator.pushNamed(context, "/support");
+
         } else if (title == "Terms & Conditions") {
           Navigator.pushNamed(context, "/terms");
         }

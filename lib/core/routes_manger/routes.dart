@@ -13,5 +13,8 @@ class AppRoutes{
   static const String termsRoute = "/terms";
   static const String ordersRoute = "/orders";
   static const String favoriteRoute = "/favorite";
+  static const String basketRoute = "/basket";
+  static const String sellersDetailsRoute = "/sellersDetails";
+
 
 }

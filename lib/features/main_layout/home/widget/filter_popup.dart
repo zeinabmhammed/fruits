@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fruits/core/resources/app_colors/app_colors.dart';
 import 'package:fruits/core/resources/app_assets/app_assets.dart';
-import 'package:fruits/core/resources/widget/custom_elevated_button.dart';
 
 class FilterPopup {
   static void show(BuildContext context) {

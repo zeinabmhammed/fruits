@@ -47,4 +47,24 @@ class AppAssets {
   static const String aboutIcon = "assets/svg/abbout.svg";
   static const String addPhotoIcon = "assets/svg/Addphoto.svg";
 
+  //language
+  static const String arabicFlag = "assets/svg/arabic.svg";
+  static const String englishFlag = "assets/svg/english.svg";
+
+  //contactUs
+  static const String whatsapp = "assets/svg/whatsApp.svg";
+  static const String instagram = "assets/svg/instgram.svg";
+  static const String faceIcon = "assets/svg/face.svg";
+  static const String youtube = "assets/svg/yourube.svg";
+
+  //basket
+  static const String product = "assets/images/product.png";
+  static const String delete = "assets/svg/delete.svg";
+
+  //orders
+  static const String  arrowIcon = "assets/svg/arrow.svg";
+
+
+
+
 }
