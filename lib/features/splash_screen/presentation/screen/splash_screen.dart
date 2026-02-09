@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fruits/core/resources/app_assets/app_assets.dart';
+import 'package:fruits/core/resources/responsive/responsive.dart';
 import 'package:fruits/features/onBoardingScreen/presentation/screen/on_boarding_screen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -24,11 +25,15 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final responsive = Responsive(context);
+
     return Scaffold(
       body: SizedBox.expand(
         child: Image.asset(
           AppAssets.splashScreen,
           fit: BoxFit.cover,
+          width: responsive.width,
+          height: responsive.height,
         ),
       ),
     );

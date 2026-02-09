@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fruits/core/resources/app_colors/app_colors.dart';
+import 'package:fruits/core/resources/responsive/responsive.dart';
 
 class CustomListCard extends StatelessWidget {
   final Widget leading;
@@ -9,6 +10,7 @@ class CustomListCard extends StatelessWidget {
   final VoidCallback? onTap;
 
   const CustomListCard({
+    super.key,
     required this.leading,
     required this.title,
     this.subtitle,
@@ -18,58 +20,73 @@ class CustomListCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 115,
-      margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-      padding: EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(30),
-        boxShadow: [
-          BoxShadow(color: Colors.black54, blurRadius: 5, offset: Offset(0, 2)),
-        ],
-      ),
-      child: Row(
-        children: [
-          Container(
-            width: 80,
-            height: 80,
-            decoration: BoxDecoration(
-              color: AppColors.white,
-              borderRadius: BorderRadius.circular(50),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.35),
-                  blurRadius: 6,
-                  offset: const Offset(0, 2),
-                ),
-              ],
-            ),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(50),
-              child: leading,
-            ),
-          ),
-          SizedBox(width: 12),
+    final responsive = Responsive(context);
 
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  title,
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                ),
-                SizedBox(height: 5),
-
-                if (subtitle != null) ...[SizedBox(height: 4), subtitle!],
-              ],
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        height: responsive.scaleHeight(105),
+        margin: EdgeInsets.symmetric(
+          vertical: responsive.scaleHeight(8),
+          horizontal: responsive.scaleWidth(16),
+        ),
+        padding: EdgeInsets.all(responsive.scaleWidth(12)),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(responsive.scaleWidth(30)),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black54,
+              blurRadius: responsive.scaleWidth(5),
+              offset: const Offset(0, 2),
             ),
-          ),
-          if (trailing != null) trailing!,
-
-        ],
+          ],
+        ),
+        child: Row(
+          children: [
+            Container(
+              width: responsive.scaleWidth(80),
+              height: responsive.scaleWidth(80),
+              decoration: BoxDecoration(
+                color: AppColors.white,
+                borderRadius: BorderRadius.circular(responsive.scaleWidth(50)),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.35),
+                    blurRadius: responsive.scaleWidth(6),
+                    offset: const Offset(0, 2),
+                  ),
+                ],
+              ),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(responsive.scaleWidth(50)),
+                child: leading,
+              ),
+            ),
+            SizedBox(width: responsive.scaleWidth(12)),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    title,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: responsive.scaleWidth(14),
+                    ),
+                  ),
+                  SizedBox(height: responsive.scaleHeight(4)),
+                  if (subtitle != null) ...[
+                    SizedBox(height: responsive.scaleHeight(3)),
+                    subtitle!,
+                  ],
+                ],
+              ),
+            ),
+            if (trailing != null) trailing!,
+          ],
+        ),
       ),
     );
   }

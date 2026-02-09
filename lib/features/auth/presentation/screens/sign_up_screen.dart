@@ -1,23 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:fruits/core/resources/app_colors/app_colors.dart';
-import 'package:fruits/core/resources/widget/custom_elevated_button.dart';
+import 'package:fruits/core/resources/responsive/responsive.dart';
 import 'package:fruits/core/resources/widget/custom_form_field.dart';
-import 'package:fruits/core/resources/widget/custom_phone_field.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import '../../../../core/resources/widget/custom_elevated_button.dart';
+import '../../../../core/resources/widget/custom_phone_field.dart';
 
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final responsive = Responsive(context);
+
     return Scaffold(
       backgroundColor: AppColors.white,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 30),
+          padding: EdgeInsets.symmetric(
+            horizontal: responsive.scaleWidth(30),
+          ),
           child: Column(
             children: [
-              SizedBox(height: 25),
+              SizedBox(height: responsive.scaleHeight(25)),
               Align(
                 alignment: Alignment.topLeft,
                 child: IconButton(
@@ -26,39 +32,43 @@ class SignUpScreen extends StatelessWidget {
                   },
                   icon: Icon(
                     Icons.arrow_back_ios_new,
-                    size: 33,
+                    size: responsive.scaleWidth(28),
                     color: AppColors.black,
                   ),
                 ),
               ),
-              const SizedBox(height: 65),
+              SizedBox(height: responsive.scaleHeight(65)),
               Text(
                 "Fruit Market",
                 style: GoogleFonts.poppins(
-                  fontSize: 42,
+                  fontSize: responsive.isTablet
+                      ? responsive.scaleWidth(48)
+                      : responsive.scaleWidth(42),
                   fontWeight: FontWeight.bold,
                   color: AppColors.green,
                 ),
               ),
-              SizedBox(height: 21),
+              SizedBox(height: responsive.scaleHeight(21)),
               Text(
                 "Sign Up to Wikala",
                 style: GoogleFonts.poppins(
-                  fontSize: 28,
+                  fontSize: responsive.isTablet
+                      ? responsive.scaleWidth(32)
+                      : responsive.scaleWidth(28),
                   fontWeight: FontWeight.bold,
                   color: AppColors.black,
                 ),
               ),
-              SizedBox(height: 28),
+              SizedBox(height: responsive.scaleHeight(28)),
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Text(
                     "Full name ",
                     style: TextStyle(
-                      fontSize: 14,
+                      fontSize: responsive.scaleWidth(14),
                       fontWeight: FontWeight.w500,
-                      color: Color(0xFF858D9A),
+                      color: const Color(0xFF858D9A),
                     ),
                   ),
                 ],
@@ -74,18 +84,18 @@ class SignUpScreen extends StatelessWidget {
                 },
                 controller: TextEditingController(),
               ),
-              SizedBox(height: 10),
+              SizedBox(height: responsive.scaleHeight(10)),
               CustomPhoneField(),
-              SizedBox(height: 15),
+              SizedBox(height: responsive.scaleHeight(15)),
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Text(
                     "Password",
                     style: TextStyle(
-                      fontSize: 14,
+                      fontSize: responsive.scaleWidth(14),
                       fontWeight: FontWeight.w500,
-                      color: Color(0xFF858D9A),
+                      color: const Color(0xFF858D9A),
                     ),
                   ),
                 ],
@@ -101,20 +111,23 @@ class SignUpScreen extends StatelessWidget {
                 },
                 controller: TextEditingController(),
               ),
-              SizedBox(height: 20),
+              SizedBox(height: responsive.scaleHeight(20)),
               CustomButton(
                 text: " Sign Up",
                 onTap: () {},
                 color: AppColors.green,
                 textColor: AppColors.white,
               ),
-              SizedBox(height: 35),
+              SizedBox(height: responsive.scaleHeight(35)),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
                     "Already have an account? ",
-                    style: TextStyle(fontSize: 18, color: AppColors.black),
+                    style: TextStyle(
+                      fontSize: responsive.scaleWidth(18),
+                      color: AppColors.black,
+                    ),
                   ),
                   GestureDetector(
                     onTap: () {
@@ -122,7 +135,10 @@ class SignUpScreen extends StatelessWidget {
                     },
                     child: Text(
                       "Login",
-                      style: TextStyle(color: Color(0xFF004D8E), fontSize: 18),
+                      style: TextStyle(
+                        color: const Color(0xFF004D8E),
+                        fontSize: responsive.scaleWidth(18),
+                      ),
                     ),
                   ),
                 ],

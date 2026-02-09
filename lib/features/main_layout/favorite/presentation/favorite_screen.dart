@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fruits/core/resources/app_assets/app_assets.dart';
 import 'package:fruits/core/resources/app_colors/app_colors.dart';
+import 'package:fruits/core/resources/responsive/responsive.dart';
 import 'package:fruits/core/resources/widget/CustomListCard.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -15,13 +16,15 @@ class FavoriteScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final responsive = Responsive(context);
+
     return Scaffold(
       backgroundColor: AppColors.white,
       appBar: AppBar(
         title: Text(
           "Favorite",
           style: GoogleFonts.poppins(
-            fontSize: 24,
+            fontSize: responsive.scaleWidth(24),
             fontWeight: FontWeight.bold,
             color: AppColors.green,
           ),
@@ -29,39 +32,52 @@ class FavoriteScreen extends StatelessWidget {
         backgroundColor: AppColors.white,
         centerTitle: true,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios, color: Colors.black, size: 25),
+          icon: Icon(
+            Icons.arrow_back_ios,
+            color: Colors.black,
+            size: responsive.scaleWidth(25),
+          ),
           onPressed: () => Navigator.pop(context),
         ),
-        shape: const Border(
-          bottom: BorderSide(color: Color(0xffDEDFDF), width: 1),
+        shape: Border(
+          bottom: BorderSide(
+            color: const Color(0xffDEDFDF),
+            width: responsive.scaleWidth(2),
+          ),
         ),
       ),
-
       body: ListView.builder(
         itemCount: favoriteProducts.length,
-        padding: const EdgeInsets.symmetric(vertical: 10),
+        padding: EdgeInsets.symmetric(
+          vertical: responsive.scaleHeight(10),
+        ),
         itemBuilder: (context, index) {
           final product = favoriteProducts[index];
 
           return CustomListCard(
-            leading: Image.asset(AppAssets.product),
+            leading: Image.asset(
+              AppAssets.product,
+              width: responsive.scaleWidth(60),
+              height: responsive.scaleHeight(60),
+            ),
             title: product['name']!,
             subtitle: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   product['price']!,
-                  style: const TextStyle(
+                  style: TextStyle(
+                    fontSize: responsive.scaleWidth(14),
                     fontWeight: FontWeight.bold,
-                    color: Color(0xff656565),
+                    color: const Color(0xff656565),
                   ),
                 ),
-                const SizedBox(height: 8),
+                SizedBox(height: responsive.scaleHeight(8)),
                 Text(
                   'Store Name: ${product['store']}',
-                  style: const TextStyle(
+                  style: TextStyle(
+                    fontSize: responsive.scaleWidth(14),
                     color: Colors.black,
-                    fontSize: 14,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -70,10 +86,10 @@ class FavoriteScreen extends StatelessWidget {
             trailing: IconButton(
               alignment: Alignment.topRight,
               padding: EdgeInsets.zero,
-              icon: const Icon(
+              icon: Icon(
                 Icons.close_outlined,
                 color: Colors.grey,
-                size: 20,
+                size: responsive.scaleWidth(20),
               ),
               onPressed: () {},
             ),

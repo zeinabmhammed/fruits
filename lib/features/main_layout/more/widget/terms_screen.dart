@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fruits/core/resources/app_colors/app_colors.dart';
+import 'package:fruits/core/resources/responsive/responsive.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class TermsScreen extends StatelessWidget {
@@ -7,6 +8,8 @@ class TermsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final responsive = Responsive(context);
+
     const termsText = """
 A Terms and Conditions agreement acts as a legal contract between you (the company) and the user.
 It’s where you maintain your rights to exclude users from your app in the event that they abuse your website/app, set rules for using your service and note other important details and disclaimers.
@@ -24,7 +27,7 @@ Terms and Conditions agreements are also known as Terms of Service or Terms of U
         title: Text(
           "Terms and Conditions",
           style: GoogleFonts.poppins(
-            fontSize: 24,
+            fontSize: responsive.scaleWidth(24),
             fontWeight: FontWeight.bold,
             color: AppColors.green,
           ),
@@ -32,19 +35,32 @@ Terms and Conditions agreements are also known as Terms of Service or Terms of U
         backgroundColor: AppColors.white,
         centerTitle: true,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios, color: Colors.black, size: 25),
+          icon: Icon(
+            Icons.arrow_back_ios,
+            color: Colors.black,
+            size: responsive.scaleWidth(25),
+          ),
           onPressed: () {
             Navigator.pop(context);
           },
         ),
-        shape: Border(bottom: BorderSide(color: Color(0xffDEDFDF), width: 1)),
+        shape: Border(
+          bottom: BorderSide(
+            color: const Color(0xffDEDFDF),
+            width: responsive.scaleWidth(2),
+          ),
+        ),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16),
+        padding: EdgeInsets.all(responsive.scaleWidth(16)),
         child: SingleChildScrollView(
           child: Text(
             termsText,
-            style: const TextStyle(fontSize: 20, color: Colors.black87),
+            style: TextStyle(
+              fontSize: responsive.scaleWidth(18),
+              color: Colors.black87,
+              height: 1.5,
+            ),
           ),
         ),
       ),

@@ -1,5 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:fruits/core/resources/app_colors/app_colors.dart';
+import 'package:fruits/core/resources/responsive/responsive.dart';
 
 class OtpTimer extends StatefulWidget {
   const OtpTimer({super.key});
@@ -36,32 +38,43 @@ class _OtpTimerState extends State<OtpTimer> {
 
   @override
   Widget build(BuildContext context) {
+    final responsive = Responsive(context);
+
     return Column(
       children: [
         Text(
           "$_start",
-          style: const TextStyle(
-            fontSize: 20,
+          style: TextStyle(
+            fontSize: responsive.scaleWidth(20),
             fontWeight: FontWeight.bold,
             color: Colors.black,
           ),
         ),
-        const SizedBox(height: 10),
+        SizedBox(height: responsive.scaleHeight(10)),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text("Not received? "),
+            Text(
+              "Not received? ",
+              style: TextStyle(
+                fontSize: responsive.scaleWidth(16),
+                color: AppColors.black,
+              ),
+            ),
             GestureDetector(
               onTap: _start == 0
                   ? () {
-                      setState(() => _start = 60);
-                      startTimer();
-                    }
+                setState(() => _start = 60);
+                startTimer();
+              }
                   : null,
               child: Text(
                 "Send Again",
                 style: TextStyle(
-                  color: _start == 0 ? const Color(0xFF1B4332) : Colors.grey,
+                  fontSize: responsive.scaleWidth(18),
+                  color: _start == 0
+                      ? const Color(0xFF1B4332)
+                      : AppColors.lightBlue,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -72,3 +85,4 @@ class _OtpTimerState extends State<OtpTimer> {
     );
   }
 }
+

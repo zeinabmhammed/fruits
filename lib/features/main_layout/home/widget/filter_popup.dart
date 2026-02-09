@@ -2,12 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fruits/core/resources/app_colors/app_colors.dart';
 import 'package:fruits/core/resources/app_assets/app_assets.dart';
+import 'package:fruits/core/resources/responsive/responsive.dart';
 
 class FilterPopup {
   static void show(BuildContext context) {
     bool offers = false;
     bool freeDelivery = false;
     String selectedArea = "All Areas";
+
+    final responsive = Responsive(context);
 
     showDialog(
       context: context,
@@ -17,60 +20,65 @@ class FilterPopup {
           builder: (context, setState) {
             return Dialog(
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20),
+                borderRadius: BorderRadius.circular(responsive.scaleWidth(20)),
               ),
               child: Container(
                 width: double.infinity,
-                padding: const EdgeInsets.all(20),
+                padding: EdgeInsets.all(responsive.scaleWidth(20)),
                 decoration: BoxDecoration(
                   color: AppColors.white,
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius: BorderRadius.circular(responsive.scaleWidth(20)),
                 ),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const Text(
+                    Text(
                       "Filter by",
                       style: TextStyle(
-                        fontSize: 18,
+                        fontSize: responsive.scaleWidth(18),
                         fontWeight: FontWeight.bold,
                         color: AppColors.black,
                       ),
                     ),
-                    const SizedBox(height: 20),
+                    SizedBox(height: responsive.scaleHeight(20)),
 
-                    // ✨ Delivered To + Icon + Dropdown
                     Row(
                       children: [
-                        const Text(
+                        Text(
                           "Delivered To",
                           style: TextStyle(
-                            fontSize: 15,
+                            fontSize: responsive.scaleWidth(15),
                             fontWeight: FontWeight.w500,
                             color: AppColors.grey,
                           ),
                         ),
-                        const SizedBox(width: 8),
+                        SizedBox(width: responsive.scaleWidth(8)),
                         SvgPicture.asset(
                           AppAssets.deliveryIcon,
-                          height: 18,
+                          height: responsive.scaleHeight(18),
                           color: AppColors.green,
                         ),
                       ],
                     ),
-                    const SizedBox(height: 20),
+                    SizedBox(height: responsive.scaleHeight(20)),
                     Container(
                       width: double.infinity,
-                      padding: const EdgeInsets.symmetric(horizontal: 15),
+                      padding: EdgeInsets.symmetric(
+                        horizontal: responsive.scaleWidth(15),
+                      ),
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(25),
-                        border: Border.all(color: Color(0xff858D9A), width: 1),
+                        borderRadius:
+                        BorderRadius.circular(responsive.scaleWidth(25)),
+                        border: Border.all(
+                          color: const Color(0xff858D9A),
+                          width: responsive.scaleWidth(1),
+                        ),
                       ),
                       child: DropdownButtonHideUnderline(
                         child: DropdownButton<String>(
                           value: selectedArea,
                           icon: const Icon(Icons.keyboard_arrow_down),
-                          iconSize: 30,
+                          iconSize: responsive.scaleWidth(30),
                           elevation: 16,
                           items: const [
                             DropdownMenuItem(
@@ -99,7 +107,8 @@ class FilterPopup {
                         Checkbox(
                           value: offers,
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20),
+                            borderRadius:
+                            BorderRadius.circular(responsive.scaleWidth(20)),
                           ),
                           onChanged: (val) {
                             setState(() {
@@ -108,7 +117,10 @@ class FilterPopup {
                           },
                           activeColor: AppColors.grey,
                         ),
-                        const Text("Offers", style: TextStyle(fontSize: 15)),
+                        Text(
+                          "Offers",
+                          style: TextStyle(fontSize: responsive.scaleWidth(15)),
+                        ),
                       ],
                     ),
                     Row(
@@ -116,7 +128,8 @@ class FilterPopup {
                         Checkbox(
                           value: freeDelivery,
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20),
+                            borderRadius:
+                            BorderRadius.circular(responsive.scaleWidth(20)),
                           ),
                           onChanged: (val) {
                             setState(() {
@@ -125,43 +138,49 @@ class FilterPopup {
                           },
                           activeColor: AppColors.green,
                         ),
-                        const Text(
+                        Text(
                           "Free Delivery",
-                          style: TextStyle(fontSize: 15),
+                          style: TextStyle(fontSize: responsive.scaleWidth(15)),
                         ),
                       ],
                     ),
-                    const SizedBox(height: 20),
+                    SizedBox(height: responsive.scaleHeight(20)),
                     SizedBox(
-                      width: 244,
+                      width: responsive.scaleWidth(244),
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           backgroundColor: AppColors.green,
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(25),
+                            borderRadius:
+                            BorderRadius.circular(responsive.scaleWidth(25)),
                           ),
-                          padding: const EdgeInsets.symmetric(vertical: 14),
+                          padding: EdgeInsets.symmetric(
+                            vertical: responsive.scaleHeight(14),
+                          ),
                         ),
                         onPressed: () {
                           Navigator.pop(context);
                         },
-                        child: const Text(
+                        child: Text(
                           "Apply Filter",
                           style: TextStyle(
-                            fontSize: 16,
+                            fontSize: responsive.scaleWidth(16),
                             color: Colors.white,
                             fontWeight: FontWeight.w600,
                           ),
                         ),
                       ),
                     ),
-                    const SizedBox(height: 12),
+                    SizedBox(height: responsive.scaleHeight(12)),
                     GestureDetector(
                       onTap: () => Navigator.pop(context),
-                      child: const Center(
+                      child: Center(
                         child: Text(
                           "Close",
-                          style: TextStyle(fontSize: 16, color: Colors.grey),
+                          style: TextStyle(
+                            fontSize: responsive.scaleWidth(16),
+                            color: Colors.grey,
+                          ),
                         ),
                       ),
                     ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fruits/core/resources/app_colors/app_colors.dart';
+import 'package:fruits/core/resources/responsive/responsive.dart';
 
 class CustomTextField extends StatelessWidget {
   final TextEditingController controller;
@@ -15,28 +16,31 @@ class CustomTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final responsive = Responsive(context);
+
     return Padding(
-      padding: const EdgeInsets.only(right: 30, left: 30),
+      padding: EdgeInsets.symmetric(
+        horizontal: responsive.scaleWidth(30),
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            children: [
-              Text(
-                text,
-                style: const TextStyle(fontSize: 16, color: Color(0xff858D9A)),
-              ),
-            ],
+          Text(
+            text,
+            style: TextStyle(
+              fontSize: responsive.scaleWidth(16),
+              color: const Color(0xff858D9A),
+            ),
           ),
-          const SizedBox(height: 10),
+          SizedBox(height: responsive.scaleHeight(10)),
           Container(
             decoration: BoxDecoration(
               color: AppColors.white,
-              borderRadius: BorderRadius.circular(25),
+              borderRadius: BorderRadius.circular(responsive.scaleWidth(25)),
               boxShadow: [
                 BoxShadow(
                   color: Colors.black.withOpacity(0.15),
-                  blurRadius: 6,
+                  blurRadius: responsive.scaleWidth(6),
                   offset: const Offset(0, 3),
                 ),
               ],
@@ -44,10 +48,13 @@ class CustomTextField extends StatelessWidget {
             child: TextField(
               controller: controller,
               maxLines: maxLines,
+              style: TextStyle(
+                fontSize: responsive.scaleWidth(14),
+              ),
               decoration: InputDecoration(
-                contentPadding: const EdgeInsets.symmetric(
-                  horizontal: 16,
-                  vertical: 12,
+                contentPadding: EdgeInsets.symmetric(
+                  horizontal: responsive.scaleWidth(16),
+                  vertical: responsive.scaleHeight(12),
                 ),
                 border: InputBorder.none,
               ),

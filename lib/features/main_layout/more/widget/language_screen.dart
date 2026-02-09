@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fruits/core/resources/app_colors/app_colors.dart';
 import 'package:fruits/core/resources/app_assets/app_assets.dart';
+import 'package:fruits/core/resources/responsive/responsive.dart';
 
 class LanguagePopup {
   static void show(BuildContext context) {
     String selectedOption = "en";
+    final responsive = Responsive(context);
 
     showDialog(
       context: context,
@@ -15,14 +17,14 @@ class LanguagePopup {
           builder: (context, setState) {
             return Dialog(
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20),
+                borderRadius: BorderRadius.circular(responsive.scaleWidth(20)),
               ),
               child: Container(
                 width: double.infinity,
-                padding: const EdgeInsets.all(20),
+                padding: EdgeInsets.all(responsive.scaleWidth(20)),
                 decoration: BoxDecoration(
                   color: AppColors.white,
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius: BorderRadius.circular(responsive.scaleWidth(20)),
                 ),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
@@ -39,15 +41,18 @@ class LanguagePopup {
                             });
                           },
                         ),
-                        const SizedBox(width: 8),
-                        SvgPicture.asset(AppAssets.arabicFlag, height: 20),
-                        const SizedBox(width: 8),
-                        const Text(
+                        SizedBox(width: responsive.scaleWidth(8)),
+                        SvgPicture.asset(
+                          AppAssets.arabicFlag,
+                          height: responsive.scaleHeight(20),
+                        ),
+                        SizedBox(width: responsive.scaleWidth(8)),
+                        Text(
                           "العربية",
                           style: TextStyle(
-                            fontSize: 16,
+                            fontSize: responsive.scaleWidth(16),
                             fontWeight: FontWeight.bold,
-                            color: Color(0xff656565),
+                            color: const Color(0xff656565),
                           ),
                         ),
                       ],
@@ -64,52 +69,59 @@ class LanguagePopup {
                             });
                           },
                         ),
-                        const SizedBox(width: 8),
-                        SvgPicture.asset(AppAssets.englishFlag, height: 16),
-                        const SizedBox(width: 8),
-                        const Text(
+                        SizedBox(width: responsive.scaleWidth(8)),
+                        SvgPicture.asset(
+                          AppAssets.englishFlag,
+                          height: responsive.scaleHeight(16),
+                        ),
+                        SizedBox(width: responsive.scaleWidth(8)),
+                        Text(
                           "English",
                           style: TextStyle(
-                            fontSize: 16,
+                            fontSize: responsive.scaleWidth(16),
                             fontWeight: FontWeight.bold,
-                            color: Color(0xff656565),
+                            color: const Color(0xff656565),
                           ),
                         ),
                       ],
                     ),
-                    const SizedBox(height: 20),
+                    SizedBox(height: responsive.scaleHeight(20)),
                     SizedBox(
-                      width: 244,
+                      width: responsive.scaleWidth(244),
+                      height: responsive.scaleHeight(44),
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           backgroundColor: AppColors.green,
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(25),
+                            borderRadius:
+                            BorderRadius.circular(responsive.scaleWidth(25)),
                           ),
-                          padding: const EdgeInsets.symmetric(vertical: 14),
+                          padding: EdgeInsets.symmetric(
+                            vertical: responsive.scaleHeight(14),
+                          ),
                         ),
                         onPressed: () {
                           Navigator.pop(context);
                         },
-                        child: const Text(
+                        child: Text(
                           "Apply",
                           style: TextStyle(
-                            fontSize: 16,
+                            fontSize: responsive.scaleWidth(14),
                             color: Colors.white,
                             fontWeight: FontWeight.w600,
                           ),
                         ),
                       ),
                     ),
-                    const SizedBox(height: 12),
+                    SizedBox(height: responsive.scaleHeight(12)),
                     GestureDetector(
                       onTap: () => Navigator.pop(context),
-                      child: const Center(
+                      child: Center(
                         child: Text(
                           "Close",
                           style: TextStyle(
-                            fontSize: 16,
-                            color: Color(0xff656565),
+                            fontSize: responsive.scaleWidth(16),
+                            color: const Color(0xff656565),
                           ),
                         ),
                       ),

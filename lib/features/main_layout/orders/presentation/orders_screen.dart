@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fruits/core/resources/app_assets/app_assets.dart';
 import 'package:fruits/core/resources/app_colors/app_colors.dart';
+import 'package:fruits/core/resources/responsive/responsive.dart';
 import 'package:fruits/core/resources/widget/CustomListCard.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -53,13 +54,15 @@ class OrdersScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final responsive = Responsive(context);
+
     return Scaffold(
       backgroundColor: AppColors.white,
       appBar: AppBar(
         title: Text(
           "My Orders",
           style: GoogleFonts.poppins(
-            fontSize: 24,
+            fontSize: responsive.scaleWidth(24),
             fontWeight: FontWeight.bold,
             color: AppColors.green,
           ),
@@ -67,62 +70,76 @@ class OrdersScreen extends StatelessWidget {
         backgroundColor: AppColors.white,
         centerTitle: true,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios, color: Colors.black, size: 25),
+          icon: Icon(Icons.arrow_back_ios,
+              color: Colors.black, size: responsive.scaleWidth(25)),
           onPressed: () => Navigator.pop(context),
         ),
-        shape: const Border(
-          bottom: BorderSide(color: Color(0xffDEDFDF), width: 1),
+        shape: Border(
+          bottom: BorderSide(
+            color: const Color(0xffDEDFDF),
+            width: responsive.scaleWidth(2),
+          ),
         ),
       ),
 
       body: ListView.builder(
         itemCount: orders.length,
-        padding: const EdgeInsets.symmetric(vertical: 10),
+        padding: EdgeInsets.symmetric(vertical: responsive.scaleHeight(10)),
         itemBuilder: (context, index) {
           final order = orders[index];
           final Color orderColor = order['color'];
 
-          return CustomListCard(
-            leading: Container(
-              padding: const EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                color: orderColor.withOpacity(0.1),
-                shape: BoxShape.circle,
-              ),
-              child: Icon(Icons.delivery_dining, color: orderColor),
-            ),
-            title: '${order['id']} - ${order['price']}',
-            subtitle: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  '${order['date']} - ${order['items']} Items',
-                  style: const TextStyle(color: Colors.grey),
+          return GestureDetector(
+            onTap: () {
+              Navigator.pushNamed(context, "/orderTracking");
+            },
+            child: CustomListCard(
+              leading: Container(
+                padding: EdgeInsets.all(responsive.scaleWidth(8)),
+                decoration: BoxDecoration(
+                  color: orderColor.withOpacity(0.1),
+                  shape: BoxShape.circle,
                 ),
-                const SizedBox(height: 4),
-                Text(
-                  'Status: ${order['status']}',
-                  style: TextStyle(
-                    color: orderColor,
-                    fontWeight: FontWeight.bold,
+                child: Icon(Icons.delivery_dining,
+                    color: orderColor, size: responsive.scaleWidth(22)),
+              ),
+              title: '${order['id']} - ${order['price']}',
+              subtitle: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    '${order['date']} - ${order['items']} Items',
+                    style: TextStyle(
+                      color: Colors.grey,
+                      fontSize: responsive.scaleWidth(14),
+                    ),
                   ),
-                ),
-              ],
-            ),
-            trailing: Container(
-              width: 70,
-              height: 70,
-              decoration: BoxDecoration(
-                color: orderColor,
-                shape: BoxShape.circle,
+                  SizedBox(height: responsive.scaleHeight(4)),
+                  Text(
+                    'Status: ${order['status']}',
+                    style: TextStyle(
+                      color: orderColor,
+                      fontWeight: FontWeight.bold,
+                      fontSize: responsive.scaleWidth(14),
+                    ),
+                  ),
+                ],
               ),
-              child: Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: SvgPicture.asset(
-                  AppAssets.arrowIcon,
-                  colorFilter: const ColorFilter.mode(
-                    Colors.white,
-                    BlendMode.srcIn,
+              trailing: Container(
+                width: responsive.scaleWidth(70),
+                height: responsive.scaleHeight(70),
+                decoration: BoxDecoration(
+                  color: orderColor,
+                  shape: BoxShape.circle,
+                ),
+                child: Padding(
+                  padding: EdgeInsets.all(responsive.scaleWidth(20)),
+                  child: SvgPicture.asset(
+                    AppAssets.arrowIcon,
+                    colorFilter: const ColorFilter.mode(
+                      Colors.white,
+                      BlendMode.srcIn,
+                    ),
                   ),
                 ),
               ),

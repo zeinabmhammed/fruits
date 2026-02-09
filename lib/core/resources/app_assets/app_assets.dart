@@ -18,6 +18,23 @@ class AppAssets {
   static const String pharmacy = "assets/images/cat4.png";
   static const String sellerLogo = "assets/images/sellers.png";
 
+  // product
+  static const String productDetails = "assets/images/productDetails.png";
+
+  //checkout
+  static const String checkOutSuccess = "assets/images/checkoutSuccess.png";
+  static const String checkOutFailed = "assets/images/failed.png";
+
+  //sellerDetails
+  static const String fruits = "assets/images/fruits.png";
+  static const String vegetables = "assets/images/vegetables.png";
+  static const String phone = "assets/images/phone.png";
+  static const String pets = "assets/images/animal.png";
+  static const String add = "assets/images/addadd.png";
+  static const String discount = "assets/svg/discount.svg";
+
+
+//________________________________________________________________________
   // Svg
   // auth
   static const String phoneIcon = "assets/svg/phone.svg";
@@ -64,6 +81,15 @@ class AppAssets {
   //orders
   static const String  arrowIcon = "assets/svg/arrow.svg";
 
+  //productDetails
+  static const String addToFav = "assets/svg/addToFav.svg";
+  static const String shareIcon = "assets/svg/shareIcon.svg";
+  static const String basket = "assets/svg/basket.svg";
+
+  // payment
+  static const String credit = "assets/svg/credit.svg";
+  static const String cash  = "assets/svg/cash.svg";
+  static const String net = "assets/images/knet.png";
 
 
 

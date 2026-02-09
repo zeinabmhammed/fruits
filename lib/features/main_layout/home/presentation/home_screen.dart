@@ -1,9 +1,9 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fruits/core/resources/app_assets/app_assets.dart';
 import 'package:fruits/core/resources/app_colors/app_colors.dart';
+import 'package:fruits/core/resources/responsive/responsive.dart';
 import 'package:fruits/features/main_layout/home/widget/categories_section.dart';
 import 'package:fruits/features/main_layout/home/widget/custom_ads_widget.dart';
 import 'package:fruits/features/main_layout/home/widget/filter_popup.dart';
@@ -27,6 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
     AppAssets.adsThree,
     AppAssets.adsFour,
   ];
+
   @override
   void initState() {
     super.initState();
@@ -49,7 +50,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final responsive = Responsive(context);
+
     return Scaffold(
+      backgroundColor: AppColors.white,
       appBar: AppBar(
         backgroundColor: AppColors.white,
         automaticallyImplyLeading: false,
@@ -57,7 +61,9 @@ class _HomeScreenState extends State<HomeScreen> {
         title: Text(
           "Fruit Market",
           style: GoogleFonts.poppins(
-            fontSize: 24,
+            fontSize: responsive.isTablet
+                ? responsive.scaleWidth(28)
+                : responsive.scaleWidth(24),
             fontWeight: FontWeight.bold,
             color: AppColors.green,
           ),
@@ -65,31 +71,42 @@ class _HomeScreenState extends State<HomeScreen> {
         actions: [
           IconButton(
             onPressed: () {},
-            icon: SvgPicture.asset(AppAssets.searchIcon, width: 26),
+            icon: SvgPicture.asset(
+              AppAssets.searchIcon,
+              width: responsive.scaleWidth(26),
+            ),
           ),
           IconButton(
             onPressed: () {
               FilterPopup.show(context);
             },
-            icon: SvgPicture.asset(AppAssets.filterIcon, width: 26),
+            icon: SvgPicture.asset(
+              AppAssets.filterIcon,
+              width: responsive.scaleWidth(26),
+            ),
           ),
-          const SizedBox(width: 10),
+          SizedBox(width: responsive.scaleWidth(10)),
         ],
-        shape: Border(bottom: BorderSide(color: Color(0xffDEDFDF), width: 1)),
+        shape: Border(
+          bottom: BorderSide(
+            color: const Color(0xffDEDFDF),
+            width: responsive.scaleWidth(2),
+          ),
+        ),
       ),
 
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(height: 10),
+            SizedBox(height: responsive.scaleHeight(10)),
             CustomAdsWidget(
               adsImages: adsImages,
               currentIndex: _currentIndex,
               timer: _timer,
             ),
-            SizedBox(height: 15),
+            SizedBox(height: responsive.scaleHeight(15)),
             CategoriesSection(),
-            SizedBox(height: 16),
+            SizedBox(height: responsive.scaleHeight(16)),
             SellersSection(),
           ],
         ),
